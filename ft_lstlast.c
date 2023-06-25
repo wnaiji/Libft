@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wnaiji <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: walidnaiji <walidnaiji@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 00:46:20 by wnaiji            #+#    #+#             */
-/*   Updated: 2022/11/18 01:02:09 by wnaiji           ###   ########.fr       */
+/*   Updated: 2023/06/25 16:27:14 by walidnaiji       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 
 t_list	*ft_lstlast(t_list *lst)
 {
-	int		i;
-
-	i = 0;
 	if (!lst)
 		return (NULL);
 	while (lst->next)

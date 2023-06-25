@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: wnaiji <marvin@42.fr>                      +#+  +:+       +#+         #
+#    By: walidnaiji <walidnaiji@student.42.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/11 11:42:09 by wnaiji            #+#    #+#              #
-#    Updated: 2022/11/18 01:29:12 by wnaiji           ###   ########.fr        #
+#    Updated: 2023/06/25 17:52:13 by walidnaiji       ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,26 +50,31 @@ SRC = ft_atoi.c \
 	  ft_lstlast.c \
 	  ft_lstadd_back.c
 
-OBJS = $(SRC:.c=.o)
+OBJ_DIR = obj
+OBJS = $(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
 
 NAME = libft.a
 
 CFLAGS = -Werror -Wextra -Wall
+SUCCESS_MSG = "\033[0;32mCompilation successful. $(NAME) created.\033[0m"
+ERROR_MSG = "\033[0;31mCompilation failed.\033[0m"
 
-.c.o: $(SRC)
-	gcc $(CFLAGS) -I . -c $< -o $(<:.c=.o)
+$(OBJ_DIR)/%.o: %.c
+	@mkdir -p $(OBJ_DIR)
+	@gcc $(CFLAGS) -I . -c $< -o $@
+	@printf "\rCompiling: $<"
 
 $(NAME): $(OBJS)
-	ar rcs $(NAME) $(OBJS)
+	@ar rcs $(NAME) $(OBJS)
+	@printf "\n"
+	@printf $(SUCCESS_MSG)
 
 all: $(NAME)
 
 clean:
-	rm -rf $(OBJS)
+	@rm -rf $(OBJ_DIR)
 
 fclean: clean
-	rm -rf $(NAME)
-
-bonus: all
+	@rm -rf $(NAME)
 
 re: fclean all
